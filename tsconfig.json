@@ -5,6 +5,7 @@
     "lib": ["ES2020"],
     "strict": true,
     "esModuleInterop": true,
+    "types": ["jest"],
     "outDir": "./dist",
     "rootDir": "./src"
   },
