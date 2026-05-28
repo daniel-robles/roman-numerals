@@ -13,3 +13,18 @@ describe('toRoman - Base symbols', () => {
     expect(toRoman(input)).toBe(expected);
   });
 });
+
+describe('toRoman - Additive combinations', () => {
+  test.each([
+    [2, 'II'],
+    [3, 'III'],
+    [6, 'VI'],
+    [11, 'XI'],
+    [15, 'XV'],
+    [110, 'CX'],
+    [1500, 'MD'],
+  ])('converts %i (not a base symbol) to "%s"', (input, expected) => {
+    expect(toRoman(input)).toBe(expected);
+  });
+});
+
