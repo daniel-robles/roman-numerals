@@ -66,3 +66,21 @@ describe('toRoman - Boundary values: valid Roman numeral range is 1 to 3999', ()
     expect(toRoman(3999)).toBe('MMMCMXCIX');
   });
 });
+
+describe('toRoman - Input validation: invalid values should throw', () => {
+  test('0 throws a RangeError', () => {
+    expect(() => toRoman(0)).toThrow(RangeError);
+  });
+
+  test('-5 throws a RangeError', () => {
+    expect(() => toRoman(-5)).toThrow(RangeError);
+  });
+
+  test('4000 throws a RangeError', () => {
+    expect(() => toRoman(4000)).toThrow(RangeError);
+  });
+
+  test('14.55 throws a TypeError', () => {
+    expect(() => toRoman(14.55)).toThrow(TypeError);
+  });
+});

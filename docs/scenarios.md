@@ -118,3 +118,34 @@ Scenario: Maximum number
   When I convert it to Roman
   Then the result should be "MMMCMXCIX"
 ```
+
+### Sixth scenarios
+This section validates the input is not an invalid value.
+
+``` gherkin
+Scenario: The value cannot be zero
+  Given the input is 0
+  When I try to convert it to Roman
+  Then a RangeError should be thrown
+```
+
+``` gherkin
+Scenario: The value cannot be negative
+  Given the input is -5
+  When I try to convert it to Roman
+  Then a RangeError should be thrown
+```
+
+``` gherkin
+Scenario: The value cannot be greater than 3999
+  Given the input is 4000
+  When I try to convert it to Roman
+  Then a RangeError should be thrown
+```
+
+``` gherkin
+Scenario: The value cannot be decimal
+  Given the input is 14.55
+  When I try to convert it to Roman
+  Then a TypeError should be thrown
+```
