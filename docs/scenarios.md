@@ -149,3 +149,30 @@ Scenario: The value cannot be decimal
   When I try to convert it to Roman
   Then a TypeError should be thrown
 ```
+
+### Seventh scenario
+``` gherkin
+Scenario Outline: Convert valid roman strings to integer
+  Given the roman value <input>
+  When I convert it to integer
+  Then the result should be <expected>
+
+  Examples:
+    | input | expected    |
+    | "I"          | 1           |
+    | "V"          | 5           |
+    | "X"          | 10          |
+    | "L"          | 50          |
+    | "C"          | 100         |
+    | "D"          | 500         |
+    | "M"          | 1000        |
+    | "IV"         | 4           |
+    | "IX"         | 9           |
+    | "XL"         | 40          |
+    | "XC"         | 90          |
+    | "CD"         | 400         |
+    | "CM"         | 900         |
+    | "XIV"        | 14          |
+    | "MCMXCIV"    | 1994        |
+    | "MMMCMXCIX"  | 3999        |
+```
