@@ -1,4 +1,3 @@
-export function toRoman(value: number): string {
   const ROMAN_NUMERALS: [number, string][] = [
     [1000, 'M'],
     [900,  'CM'],
@@ -15,14 +14,16 @@ export function toRoman(value: number): string {
     [1,    'I'],
   ];
 
-  let result = '';
-  for (const [num, symbol] of ROMAN_NUMERALS) {
-    while (value >= num) {
-      value -= num;
-      result += symbol;
+export function toRoman(value: number): string {
+  let romanResult = '';
+
+  for (const [number, symbol] of ROMAN_NUMERALS) {
+    while (value >= number) {
+      value -= number;
+      romanResult += symbol;
     }
   }
-  return result;
+  return romanResult;
 }
 
 export function fromRoman(s: string): number {
