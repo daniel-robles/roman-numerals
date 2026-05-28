@@ -1,3 +1,13 @@
+const ROMAN_VALUES: { [key: string]: number } = {
+  'I': 1,
+  'V': 5,
+  'X': 10,
+  'L': 50,
+  'C': 100,
+  'D': 500,
+  'M': 1000,
+};
+
 const ROMAN_NUMERALS: [number, string][] = [
   [1000, 'M'],
   [900,  'CM'],
@@ -37,5 +47,19 @@ export function toRoman(value: number): string {
 }
 
 export function fromRoman(s: string): number {
-  throw new Error('Not implemented');
+  let total = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    const currentValue = ROMAN_VALUES[s[i]];
+    const nextValue = ROMAN_VALUES[s[i + 1]] || 0;
+
+    if (currentValue < nextValue) {
+      total += nextValue - currentValue;
+      i++;
+    } else {
+      total += currentValue;
+    }
+  }
+
+  return total;
 }
