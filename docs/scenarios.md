@@ -103,3 +103,18 @@ Scenario Outline: Combination of additive and subtraction cases
     | 708   | "DCCVIII"   |
     | 2467  | "MMCDLXVII" |
 ```
+
+### Fifth scenario
+``` gherkin
+Scenario: Minimum number
+  Given the input is 1
+  When I convert it to Roman
+  Then the result should be "I"
+```
+
+``` gherkin
+Scenario: Maximum number
+  Given the input is 3999
+  When I convert it to Roman
+  Then the result should be "MMMCMXCIX"
+```

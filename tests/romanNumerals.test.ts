@@ -56,3 +56,13 @@ describe('toRoman - Combination of additive and subtractive cases', () => {
     expect(toRoman(input)).toBe(expected);
   });
 });
+
+describe('toRoman - Boundary values: valid Roman numeral range is 1 to 3999', () => {
+  test('1 is the minimum valid input and converts to "I"', () => {
+    expect(toRoman(1)).toBe('I');
+  });
+
+  test('3999 is the maximum valid input and converts to "MMMCMXCIX"', () => {
+    expect(toRoman(3999)).toBe('MMMCMXCIX');
+  });
+});
