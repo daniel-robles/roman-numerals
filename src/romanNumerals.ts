@@ -17,6 +17,14 @@
 export function toRoman(value: number): string {
   let romanResult = '';
 
+  if (value === 0 || value < 1 || value > 3999) {
+    throw new RangeError('Input must be a positive integer between 1 and 3999');
+  }
+
+  if (!Number.isInteger(value)) {
+    throw new TypeError('Input must be an integer');
+  }
+
   for (const [number, symbol] of ROMAN_NUMERALS) {
     while (value >= number) {
       value -= number;
