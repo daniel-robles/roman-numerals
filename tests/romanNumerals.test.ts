@@ -43,3 +43,16 @@ describe('toRoman - Subtractive cases: a smaller symbol before a larger one mean
   });
 });
 
+describe('toRoman - Combination of additive and subtractive cases', () => {
+  test.each([
+    [14, 'XIV'],
+    [33, 'XXXIII'],
+    [47, 'XLVII'],
+    [69, 'LXIX'],
+    [421, 'CDXXI'],
+    [708, 'DCCVIII'],
+    [2467, 'MMCDLXVII'],
+  ])('converts %i to "%s" using both additive and subtractive notation', (input, expected) => {
+    expect(toRoman(input)).toBe(expected);
+  });
+});

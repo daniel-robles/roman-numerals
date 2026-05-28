@@ -85,3 +85,21 @@ Scenario: Subtractive case - 900 is represented subtractively as "CM", not addit
   When I convert it to Roman
   Then the result should be "CM" and not "DCCCC"
 ```
+
+### Fourth scenario
+``` gherkin
+Scenario Outline: Combination of additive and subtraction cases
+  Given the input <input>
+  When I convert it to Roman
+  Then the result should be <expected>
+
+  Examples:
+    | input | expected    |
+    | 14    | "XIV"       |
+    | 33    | "XXXIII"    |
+    | 47    | "XLVII"     |
+    | 69    | "LXIX"      |
+    | 421   | "CDXXI"     |
+    | 708   | "DCCVIII"   |
+    | 2467  | "MMCDLXVII" |
+```
