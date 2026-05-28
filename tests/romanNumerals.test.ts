@@ -28,3 +28,18 @@ describe('toRoman - Additive combinations', () => {
   });
 });
 
+describe('toRoman - Subtractive cases: a smaller symbol before a larger one means subtraction, not addition', () => {
+  test.each([
+    [4, 'IV', 'IIII'],
+    [9, 'IX', 'VIIII'],
+    [40, 'XL', 'XXXX'],
+    [90, 'XC', 'LXXXX'],
+    [400, 'CD', 'CCCC'],
+    [900, 'CM', 'DCCCC'],
+  ])('%i is represented subtractively as "%s", not additively as "%s"', (input, expected, notExpected) => {
+    const result = toRoman(input);
+    expect(result).toBe(expected);
+    expect(result).not.toBe(notExpected);
+  });
+});
+
