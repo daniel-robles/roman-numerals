@@ -123,3 +123,16 @@ describe('fromRoman - Input validation: invalid character repetition should thro
     expect(() => fromRoman('VV')).toThrow(Error);
   });
 });
+
+describe('fromRoman - Input validation: invalid subtractive pairs should throw', () => {
+  test.each([
+    ['IC'],
+    ['ID'],
+    ['XM'],
+    ['XMCC'],
+    ['IDVI'],
+    ['ICXI'],
+  ])('"%s" contains an invalid subtractive pair and throws an Error', (input) => {
+    expect(() => fromRoman(input)).toThrow(Error);
+  });
+});

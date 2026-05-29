@@ -201,3 +201,22 @@ Scenario: Invalid char repetition in the input string (char should not be repete
   When the user try to convert the roman string to integer
   Then an Error should be thrown 
 ```
+
+### Tenth scenarios
+
+``` gherkin
+Scenario: Invalid pair substractive. The valid ones are: IV, IX, XL, XC, CD, CM
+  Given the input has an invalid subtractive pair like <input>
+  When the user convert to integer
+  Then an Error should be thrown
+
+  Examples:
+    | input   |
+    | "IC"    |
+    | "ID"    |
+    | "XM"    |
+    | "XMCC"  |
+    | "IDVI"  |
+    | "ICXI"  |
+
+```
