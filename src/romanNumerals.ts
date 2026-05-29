@@ -48,9 +48,35 @@ export function toRoman(value: number): string {
 
 export function fromRoman(roman: string): number {
   let total = 0;
+  let currentEvaluatedChar = "";
+  let counter = 0;
+  const validRepetedChars = ['I', 'X', 'C', 'M'];
 
   if (!/^[IVXLCDM]+$/.test(roman)) {
     throw new TypeError('Input contains invalid Roman numeral characters');
+  }
+
+  for (let i = 0; i < roman.length; i++) {
+    const currentChar = roman[i];
+    const nextChar = i + 1 < roman.length ? roman[i + 1] : null;
+
+    if (currentChar === nextChar && !validRepetedChars.includes(currentChar)) {
+      throw new Error(`Character "${currentChar}" cannot be repeated`);
+    }
+
+    if ((currentChar === nextChar || (currentChar === currentEvaluatedChar && !nextChar)) && validRepetedChars.includes(currentChar)) {
+      currentEvaluatedChar = currentChar;
+      counter++;
+
+      if (counter > 3) {
+        throw new Error(`Character "${currentChar}" cannot be repeated more than three times in a row`);
+      }
+    }
+    else
+    {
+      currentEvaluatedChar = "";
+      counter = 0;
+    }
   }
 
   for (let i = 0; i < roman.length; i++) {
