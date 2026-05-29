@@ -220,3 +220,11 @@ Scenario: Invalid pair substractive. The valid ones are: IV, IX, XL, XC, CD, CM
     | "ICXI"  |
 
 ```
+
+### Eleventh scenario
+``` gherkin
+Scenario: Lowercase input should throw a TypeError
+  Given the input is "xiv"
+  When the user try to convert to integer
+  Then a TypeError should be thrown
+```

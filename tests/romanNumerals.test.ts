@@ -136,3 +136,9 @@ describe('fromRoman - Input validation: invalid subtractive pairs should throw',
     expect(() => fromRoman(input)).toThrow(Error);
   });
 });
+
+describe('fromRoman - Input validation: lowercase input should throw', () => {
+  test('"xiv" is lowercase and throws a TypeError', () => {
+    expect(() => fromRoman('xiv')).toThrow(TypeError);
+  });
+});
