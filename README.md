@@ -74,6 +74,17 @@ After running coverage, the HTML report is available at:
 
     coverage/lcov-report/index.html
 
+## Running the CLI
+
+    npm run cli
+
+The CLI allows you to test the library interactively:
+
+    Options:
+      1 → Integer to Roman
+      2 → Roman to Integer
+      q → Quit
+
 ## TDD Commit Convention
 
 Each red-green-refactor cycle produces 3 commits:

@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "cli": "tsx src/cli.ts"
   },
   "keywords": [],
   "author": "",
@@ -13,9 +14,11 @@
   "description": "",
   "devDependencies": {
     "@types/jest": "^30.0.0",
+    "@types/node": "^25.9.1",
     "jest": "^30.4.2",
     "ts-jest": "^29.4.11",
     "ts-node": "^10.9.2",
+    "tsx": "^4.22.3",
     "typescript": "^6.0.3"
   }
 }
