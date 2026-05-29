@@ -62,10 +62,25 @@ function validateRepetition(roman: string): void {
   }
 }
 
+function validateSubtractivePairs(roman: string): void {
+  const validPairs = ['IV', 'IX', 'XL', 'XC', 'CD', 'CM'];
+  for (let i = 0; i < roman.length - 1; i++) {
+    const current = ROMAN_VALUES[roman[i]];
+    const next = ROMAN_VALUES[roman[i + 1]];
+    if (current < next) {
+      const pair = roman[i] + roman[i + 1];
+      if (!validPairs.includes(pair)) {
+        throw new Error(`Invalid subtractive pair: ${pair}`);
+      }
+    }
+  }
+}
+
 export function fromRoman(roman: string): number {
   let total = 0;
   validateCharacters(roman);
   validateRepetition(roman);
+  validateSubtractivePairs(roman);
   
   for (let i = 0; i < roman.length; i++) {
     const currentValue = ROMAN_VALUES[roman[i]];
