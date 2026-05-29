@@ -49,10 +49,8 @@ export function toRoman(value: number): string {
 export function fromRoman(roman: string): number {
   let total = 0;
 
-  for (const char of roman) {
-    if (!ROMAN_VALUES[char]) {
-      throw new TypeError(`Invalid Roman numeral character: ${char}`);
-    }
+  if (!/^[IVXLCDM]+$/.test(roman)) {
+    throw new TypeError('Input contains invalid Roman numeral characters');
   }
 
   for (let i = 0; i < roman.length; i++) {
