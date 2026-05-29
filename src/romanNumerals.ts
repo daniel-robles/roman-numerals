@@ -46,39 +46,27 @@ export function toRoman(value: number): string {
   return result;
 }
 
-export function fromRoman(roman: string): number {
-  let total = 0;
-  let currentEvaluatedChar = "";
-  let counter = 0;
-  const validRepetedChars = ['I', 'X', 'C', 'M'];
-
+function validateCharacters(roman: string): void {
   if (!/^[IVXLCDM]+$/.test(roman)) {
     throw new TypeError('Input contains invalid Roman numeral characters');
   }
+}
 
-  for (let i = 0; i < roman.length; i++) {
-    const currentChar = roman[i];
-    const nextChar = i + 1 < roman.length ? roman[i + 1] : null;
-
-    if (currentChar === nextChar && !validRepetedChars.includes(currentChar)) {
-      throw new Error(`Character "${currentChar}" cannot be repeated`);
-    }
-
-    if ((currentChar === nextChar || (currentChar === currentEvaluatedChar && !nextChar)) && validRepetedChars.includes(currentChar)) {
-      currentEvaluatedChar = currentChar;
-      counter++;
-
-      if (counter > 3) {
-        throw new Error(`Character "${currentChar}" cannot be repeated more than three times in a row`);
-      }
-    }
-    else
-    {
-      currentEvaluatedChar = "";
-      counter = 0;
-    }
+function validateRepetition(roman: string): void {
+  if (/([VLD])\1/.test(roman)) {
+    throw new Error('Characters V, L, and D cannot be repeated');
   }
 
+  if (/([IXCM])\1{3}/.test(roman)) {
+    throw new Error('No character can repeat more than three times in a row');
+  }
+}
+
+export function fromRoman(roman: string): number {
+  let total = 0;
+  validateCharacters(roman);
+  validateRepetition(roman);
+  
   for (let i = 0; i < roman.length; i++) {
     const currentValue = ROMAN_VALUES[roman[i]];
     const nextValue = i + 1 < roman.length ? ROMAN_VALUES[roman[i + 1]] : 0;
