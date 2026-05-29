@@ -46,18 +46,17 @@ export function toRoman(value: number): string {
   return result;
 }
 
-export function fromRoman(s: string): number {
+export function fromRoman(roman: string): number {
   let total = 0;
 
-  for (let i = 0; i < s.length; i++) {
-    const currentValue = ROMAN_VALUES[s[i]];
-    const nextValue = ROMAN_VALUES[s[i + 1]] || 0;
+  for (let i = 0; i < roman.length; i++) {
+    const currentValue = ROMAN_VALUES[roman[i]];
+    const nextValue = i + 1 < roman.length ? ROMAN_VALUES[roman[i + 1]] : 0;
 
-    if (currentValue < nextValue) {
-      total += nextValue - currentValue;
-      i++;
-    } else {
+    if (currentValue >= nextValue) {
       total += currentValue;
+    } else {
+      total -= currentValue;
     }
   }
 
