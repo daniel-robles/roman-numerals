@@ -107,3 +107,9 @@ describe('fromRoman - Convert valid Roman strings to integer', () => {
     expect(fromRoman(input)).toBe(expected);
   });
 });
+
+describe('fromRoman - Input validation: invalid characters should throw', () => {
+  test('"AIV" contains an invalid character and throws a TypeError', () => {
+    expect(() => fromRoman('AIV')).toThrow(TypeError);
+  });
+});

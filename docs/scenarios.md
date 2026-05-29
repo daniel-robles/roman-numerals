@@ -176,3 +176,12 @@ Scenario Outline: Convert valid roman strings to integer
     | "MCMXCIV"    | 1994        |
     | "MMMCMXCIX"  | 3999        |
 ```
+
+### Eight scenario
+
+```gherkin
+Scenario: Invalid characters in the input roman string 
+  Given the input is "AIV"
+  When the user try to convert the roman string to integer
+  Then a TypeError should be thrown 
+```
