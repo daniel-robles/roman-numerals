@@ -1,3 +1,5 @@
+const VALID_SUBTRACTIVE_PAIRS = ['IV', 'IX', 'XL', 'XC', 'CD', 'CM'];
+
 const ROMAN_VALUES: { [key: string]: number } = {
   'I': 1,
   'V': 5,
@@ -24,14 +26,17 @@ const ROMAN_NUMERALS: [number, string][] = [
   [1,    'I'],
 ];
 
-export function toRoman(value: number): string {
+function validateToRomanInput(value: number): void {
   if (!Number.isInteger(value)) {
     throw new TypeError('Input must be an integer');
   }
-
   if (value < 1 || value > 3999) {
     throw new RangeError('Input must be a positive integer between 1 and 3999');
   }
+}
+
+export function toRoman(value: number): string {
+  validateToRomanInput(value);
 
   let remaining = value;
   let result = '';
@@ -63,13 +68,12 @@ function validateRepetition(roman: string): void {
 }
 
 function validateSubtractivePairs(roman: string): void {
-  const validPairs = ['IV', 'IX', 'XL', 'XC', 'CD', 'CM'];
   for (let i = 0; i < roman.length - 1; i++) {
     const current = ROMAN_VALUES[roman[i]];
     const next = ROMAN_VALUES[roman[i + 1]];
     if (current < next) {
       const pair = roman[i] + roman[i + 1];
-      if (!validPairs.includes(pair)) {
+      if (!VALID_SUBTRACTIVE_PAIRS.includes(pair)) {
         throw new Error(`Invalid subtractive pair: ${pair}`);
       }
     }
