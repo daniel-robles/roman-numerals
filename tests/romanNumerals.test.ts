@@ -113,3 +113,13 @@ describe('fromRoman - Input validation: invalid characters should throw', () => 
     expect(() => fromRoman('AIV')).toThrow(TypeError);
   });
 });
+
+describe('fromRoman - Input validation: invalid character repetition should throw', () => {
+  test('"IIII" has more than three consecutive repetitions and throws an Error', () => {
+    expect(() => fromRoman('IIII')).toThrow(Error);
+  });
+
+  test('"VV" repeats a character that cannot be repeated and throws an Error', () => {
+    expect(() => fromRoman('VV')).toThrow(Error);
+  });
+});

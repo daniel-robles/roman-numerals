@@ -185,3 +185,19 @@ Scenario: Invalid characters in the input roman string
   When the user try to convert the roman string to integer
   Then a TypeError should be thrown 
 ```
+
+### Ninth scenario
+
+```gherkin
+Scenario: Invalid char repetition in the input string (more than three)
+  Given the input is "IIII"
+  When the user try to convert the roman string to integer
+  Then an Error should be thrown 
+```
+
+```gherkin
+Scenario: Invalid char repetition in the input string (char should not be repeted)
+  Given the input is "VV"
+  When the user try to convert the roman string to integer
+  Then an Error should be thrown 
+```
